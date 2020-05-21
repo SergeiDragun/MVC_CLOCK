@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLOCK_MVC</title>
+    <style>
+        .wrapper {
+            margin: auto;
+            position: relative;
+            float: left;
+            margin-right: 15px;
+        }
+    
+        .container {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: rgb(252, 202, 102);
+            position: relative;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    
+        .clock_hands {
+            height: 300px;
+            width: 300px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .hours, .minutes, .seconds {
+            position: absolute;
+            bottom: calc(50% - 20px);
+            border-radius: 100px;
+            z-index: 2;
+            background-color: rgb(43,42,41);
+            opacity: 0.8;
+        }
+    
+        .hours {
+            width: 3%;
+            height: 30%;
+            transform-origin: 50% calc(100% - 20px);
+            background-color: black;
+        }
+    
+        .minutes {
+            width: 2%;
+            height: 40%;
+            transform-origin: 50% calc(100% - 20px);
+            background-color: brown;
+        }
+    
+        .seconds {
+            width: 1%;
+            height: 50%;
+            transform-origin: 50% calc(100% - 20px);
+            background-color: grey;
+        }
+    
+        .hours_styles {
+            background-color: rgb(72,179,130);
+            width: 13%;
+            height: 13%;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: x-large;
+        }
+    
+        .center {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <script src="Clock.js"></script>
+    <script src="ClockViewDOM.js"></script>
+    <script src="ClockViewSVG.js"></script>
+    <script src="ClockViewCANVAS.js"></script>
+    <script src="ClockControllerButtons.js"></script>
+
+    <div class="wrapper" id="container1">
+        <div>
+            <input type="button" value="Старт" class="start">
+            <input type="button" value="Стоп" class="stop">
+            <span class="info"></span>
+        </div>
+        <div class="container">
+            <div class="clock_hands">
+                <div class="hours"></div>
+                <div class="minutes"></div>
+                <div class="seconds"></div>
+            </div>
+        <div class="center"></div>
+        </div>
+    </div>
+    <div class="wrapper" id="container2">
+        <div>
+            <input type="button" value="Старт" class="start">
+            <input type="button" value="Стоп" class="stop">
+            <span class="info"></span>
+        </div>
+        <div class="container">
+            <div class="clock_hands">
+                <div class="hours"></div>
+                <div class="minutes"></div>
+                <div class="seconds"></div>
+            </div>
+        <div class="center"></div>
+        </div>
+    </div>
+    <div class="wrapper" id="container3">
+        <div>
+            <input type="button" value="Старт" class="start">
+            <input type="button" value="Стоп" class="stop">
+            <span class="info"></span>
+        </div>
+        <svg class="svg" width="300" height="300" xmlns='http://www.w3.org/2000/svg'>
+            <circle cx="150" cy="150" r="150" fill="rgb(252, 202, 102)"/>
+            <g class="hours_block"></g>
+            <g class="arrows">
+                <line class="hoursArrow" x1="150" y1="170" x2="150" y2="80" stroke="black" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+                <line class="minutesArrow" x1="150" y1="170" x2="150" y2="60" stroke="brown" stroke-width="4" stroke-linecap="round" opacity="0.7" />
+                <line class="secondsArrow" x1="150" y1="170" x2="150" y2="20" stroke="grey" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                <circle cx="150" cy="150" r="3" fill="white"/>
+            </g>
+        </svg>
+    </div>
+    <div class="wrapper" id="container4">
+        <div>
+            <input type="button" value="Старт" class="start">
+            <input type="button" value="Стоп" class="stop">
+            <span class="info"></span>
+        </div>
+        <svg class="svg" width="300" height="300" xmlns='http://www.w3.org/2000/svg'>
+            <circle cx="150" cy="150" r="150" fill="rgb(252, 202, 102)"/>
+            <g class="hours_block"></g>
+            <g class="arrows">
+                <line class="hoursArrow" x1="150" y1="170" x2="150" y2="80" stroke="black" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+                <line class="minutesArrow" x1="150" y1="170" x2="150" y2="60" stroke="brown" stroke-width="4" stroke-linecap="round" opacity="0.7" />
+                <line class="secondsArrow" x1="150" y1="170" x2="150" y2="20" stroke="grey" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                <circle cx="150" cy="150" r="3" fill="white"/>
+            </g>
+        </svg>
+    </div>
+    <div class="wrapper" id="container5">
+        <div>
+            <input type="button" value="Старт" class="start">
+            <input type="button" value="Стоп" class="stop">
+            <span class="info"></span>
+        </div>
+        <canvas class="CVS" width="300px" height="300px"></canvas>
+    </div>
+    <div class="wrapper" id="container6">
+        <div>
+            <input type="button" value="Старт" class="start">
+            <input type="button" value="Стоп" class="stop">
+            <span class="info"></span>
+        </div>
+        <canvas class="CVS" width="300px" height="300px"></canvas>
+    </div>
+
+    <script>
+        "use strict";
+        // Первые DOM часы
+        var clock = new Clock(-5, "Нью-Йорк");
+        var view = new View();
+        var contr = new Controller();
+        var container = document.getElementById("container1");
+        clock.start(view);
+        view.start(clock, container);
+        view.addHoursBlocks();
+        contr.start(clock, container);
+        clock.updateView();
+        clock.clockStart();
+        //////////////////////////////////////////////
+
+        // Вторые DOM часы
+        var clock2 = new Clock(3, "Минск");
+        var view2 = new View();
+        var contr2 = new Controller();
+        var container2 = document.getElementById("container2");
+        clock2.start(view2);
+        view2.start(clock2, container2);
+        view2.addHoursBlocks();
+        contr2.start(clock2, container2);
+        clock2.updateView();
+        clock2.clockStart();
+        ///////////////////////////////////////////////
+
+        // Первые SVG часы
+        var clock3 = new Clock(0, "Лондон")
+        var view3 = new ViewSvg();
+        var contr3 = new Controller();
+        var container3 = document.getElementById("container3");
+        clock3.start(view3);
+        view3.start(clock3, container3);
+        view3.addHoursBlocks();
+        contr3.start(clock3, container3);
+        clock3.updateView();
+        clock3.clockStart();
+        ////////////////////////////////////////////////
+
+        // Вторые SVG часы
+        var clock4 = new Clock(9, "Токио")
+        var view4 = new ViewSvg();
+        var contr4 = new Controller();
+        var container4 = document.getElementById("container4");
+        clock4.start(view4);
+        view4.start(clock4, container4);
+        contr4.start(clock4, container4);
+        view4.addHoursBlocks();
+        clock4.updateView();
+        clock4.clockStart();
+        ////////////////////////////////////////////////
+
+        // Первые CANVAS часы
+        var clock5 = new Clock(1, "Берлин")
+        var view5 = new viewCVS();
+        var contr5 = new Controller();
+        var container5 = document.getElementById("container5");
+        clock5.start(view5);
+        view5.start(clock5, container5);
+        contr5.start(clock5, container5);
+        clock5.updateView();
+        clock5.clockStart();
+        ///////////////////////////////////////////////
+
+        // Вторые CANVAS часы
+        var clock6 = new Clock(10, "Владивосток")
+        var view6 = new viewCVS();
+        var contr6 = new Controller();
+        var container6 = document.getElementById("container6");
+        clock6.start(view6);
+        view6.start(clock6, container6);
+        contr6.start(clock6, container6);
+        clock6.updateView();
+        clock6.clockStart();
+        ///////////////////////////////////////////////
+    </script>
+</body>
+</html>
